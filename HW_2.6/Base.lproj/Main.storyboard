@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="PMa-Ks-IkE"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="tintColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="geG-Bi-meU">
                         <barButtonItem key="rightBarButtonItem" image="square.and.pencil" catalog="system" id="Swa-6d-iHE">
@@ -25,6 +25,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="backgroundView" destination="ncW-kn-Ffp" id="dcC-Vu-EXa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WWn-nQ-bet" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -49,7 +52,7 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="doneButtodPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="jhx-m2-tV4"/>
+                                    <action selector="doneButtonPressedN" destination="BYZ-38-t0r" eventType="touchUpInside" id="C9m-TZ-Tva"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="vtb-Me-hN8">
@@ -180,10 +183,10 @@
                     </view>
                     <connections>
                         <outlet property="blueInputText" destination="QB0-DE-Wco" id="Zmb-JN-XcB"/>
-                        <outlet property="blueLabel" destination="C8i-TW-Kgc" id="0b4-mI-IfV"/>
+                        <outlet property="blueLabel" destination="A5D-6P-Uqu" id="XWC-jc-xv1"/>
                         <outlet property="blueSlider" destination="D19-CV-A5l" id="tdZ-xm-DiL"/>
                         <outlet property="greenInputText" destination="Ndb-Lp-t1Q" id="cgp-jX-Aw5"/>
-                        <outlet property="greenLabel" destination="A5D-6P-Uqu" id="EfM-rB-rke"/>
+                        <outlet property="greenLabel" destination="C8i-TW-Kgc" id="MgX-Fw-zod"/>
                         <outlet property="greenSlider" destination="aCr-if-IUi" id="Zuj-qm-rjT"/>
                         <outlet property="previewColor" destination="XeS-5g-5c2" id="ObO-vi-MU5"/>
                         <outlet property="redInputText" destination="xi4-mQ-ZuD" id="9gd-Fk-8Sg"/>
@@ -227,6 +230,9 @@
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

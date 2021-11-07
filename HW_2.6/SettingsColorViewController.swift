@@ -24,7 +24,7 @@ class SettingsColorViewController: UIViewController {
     @IBOutlet weak var blueInputText: UITextField!
     
     var mainVievBackgroudColor: UIColor!
-    var delegate: ViewBackgroundDeligate?
+    var delegate: ViewBackgroundDeligate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,20 +32,40 @@ class SettingsColorViewController: UIViewController {
         previewColor.layer.cornerRadius = 10
         previewColor.backgroundColor = mainVievBackgroudColor
     
+//        redInputText.delegate = self
+//        greenInputText.delegate = self
+//        blueInputText.delegate = self
+        
         setValueForSliders()
         setValueForLabels()
         setValueForInputTexts()
         
     }
     
-    @IBAction func doneButtodPressed() {
+    @IBAction func doneButtonPressedN() {
+        delegate.setColor(previewColor.backgroundColor!)
         dismiss(animated: true)
     }
     
+    
     @IBAction func changeSliderValue(_ sender: UISlider) {
         setColor()
-        setValueForLabels()
-        setValueForInputTexts()
+        let formattedSliderValue = formattedString(from: sender.value)
+        
+        switch sender.tag {
+        case 1:
+            redLabel.text = formattedSliderValue
+            redInputText.text = formattedSliderValue
+        case 2:
+            greenLabel.text = formattedSliderValue
+            greenInputText.text = formattedSliderValue
+        case 3:
+            blueLabel.text = formattedSliderValue
+            blueInputText.text = formattedSliderValue
+        default:
+            break
+        }
+
     }
     
     func setColor() {
@@ -54,7 +74,6 @@ class SettingsColorViewController: UIViewController {
                                     blue: CGFloat(blueSlider.value),
                                     alpha: 1)
         previewColor.backgroundColor = selectedColor
-        delegate?.setColor(selectedColor)
     }
     
     private func setValueForLabels(){
