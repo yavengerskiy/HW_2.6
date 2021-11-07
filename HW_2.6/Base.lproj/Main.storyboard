@@ -30,10 +30,10 @@
             </objects>
             <point key="canvasLocation" x="-139.13043478260872" y="33.482142857142854"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings Color View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HW_2_6" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SettingsColorViewController" customModule="HW_2_6" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -48,6 +48,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Done">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="35"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="doneButtodPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="jhx-m2-tV4"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="vtb-Me-hN8">
                                 <rect key="frame" x="20" y="233" width="374" height="108"/>
@@ -107,17 +110,26 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="KXb-ly-yfL">
                                         <rect key="frame" x="104" y="7" width="213" height="94"/>
                                         <subviews>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="F9p-b1-3kQ">
+                                            <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="F9p-b1-3kQ">
                                                 <rect key="frame" x="-2" y="0.0" width="217" height="31"/>
                                                 <color key="tintColor" systemColor="systemRedColor"/>
+                                                <connections>
+                                                    <action selector="changeSliderValue:" destination="BYZ-38-t0r" eventType="valueChanged" id="bkO-2p-B0T"/>
+                                                </connections>
                                             </slider>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="D19-CV-A5l">
+                                            <slider opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="D19-CV-A5l">
                                                 <rect key="frame" x="-2" y="32" width="217" height="31"/>
                                                 <color key="tintColor" systemColor="systemGreenColor"/>
+                                                <connections>
+                                                    <action selector="changeSliderValue:" destination="BYZ-38-t0r" eventType="valueChanged" id="t64-gp-bKy"/>
+                                                </connections>
                                             </slider>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="aCr-if-IUi">
+                                            <slider opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="aCr-if-IUi">
                                                 <rect key="frame" x="-2" y="64" width="217" height="31"/>
                                                 <color key="tintColor" systemColor="systemBlueColor"/>
+                                                <connections>
+                                                    <action selector="changeSliderValue:" destination="BYZ-38-t0r" eventType="valueChanged" id="gOL-WS-3wf"/>
+                                                </connections>
                                             </slider>
                                         </subviews>
                                     </stackView>
