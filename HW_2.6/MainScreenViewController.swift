@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ViewBackgroundDeligate {
+    func setColor(_ color: UIColor)
+}
+
 class MainScreenViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

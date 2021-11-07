@@ -13,7 +13,6 @@
 		165D81882736E41000926DA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 165D81862736E41000926DA7 /* Main.storyboard */; };
 		165D818A2736E41200926DA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 165D81892736E41200926DA7 /* Assets.xcassets */; };
 		165D818D2736E41200926DA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 165D818B2736E41200926DA7 /* LaunchScreen.storyboard */; };
-		165D819527379B2C00926DA7 /* ViewBackgroundDeligate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165D819427379B2C00926DA7 /* ViewBackgroundDeligate.swift */; };
 		165D81972737A35300926DA7 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165D81962737A35300926DA7 /* MainScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +25,6 @@
 		165D81892736E41200926DA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		165D818C2736E41200926DA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		165D818E2736E41200926DA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		165D819427379B2C00926DA7 /* ViewBackgroundDeligate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBackgroundDeligate.swift; sourceTree = "<group>"; };
 		165D81962737A35300926DA7 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,7 +65,6 @@
 				165D81892736E41200926DA7 /* Assets.xcassets */,
 				165D818B2736E41200926DA7 /* LaunchScreen.storyboard */,
 				165D818E2736E41200926DA7 /* Info.plist */,
-				165D819427379B2C00926DA7 /* ViewBackgroundDeligate.swift */,
 				165D81962737A35300926DA7 /* MainScreenViewController.swift */,
 			);
 			path = HW_2.6;
@@ -146,7 +143,6 @@
 			files = (
 				165D81972737A35300926DA7 /* MainScreenViewController.swift in Sources */,
 				165D81852736E41000926DA7 /* SettingsColorViewController.swift in Sources */,
-				165D819527379B2C00926DA7 /* ViewBackgroundDeligate.swift in Sources */,
 				165D81812736E41000926DA7 /* AppDelegate.swift in Sources */,
 				165D81832736E41000926DA7 /* SceneDelegate.swift in Sources */,
 			);
