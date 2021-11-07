@@ -24,7 +24,7 @@ class SettingsColorViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var blueInputText: UITextField!
     
     var mainVievBackgroudColor: UIColor!
-    var delegate: ViewBackgroundDeligate!
+    var delegate: ViewBackgroundDeligate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +45,8 @@ class SettingsColorViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func doneButtonPressed() {
-        delegate.setColor(previewColor.backgroundColor!)
+        guard let selectedColor = previewColor.backgroundColor else { return }
+        delegate?.setColor(selectedColor)
         dismiss(animated: true)
     }
     
@@ -68,6 +69,7 @@ class SettingsColorViewController: UIViewController, UITextFieldDelegate {
                                     blue: CGFloat(blueSlider.value),
                                     alpha: 1)
         previewColor.backgroundColor = selectedColor
+        
     }
     
     private func setValueForLabels(){
@@ -109,7 +111,9 @@ extension SettingsColorViewController {
     
     func textFieldDidEndEditing(_ inputTextField: UITextField) {
         
-        if let currentValue = Float(inputTextField.text!) {
+        guard let inputTextFieldtext = inputTextField.text else { return }
+        
+        if let currentValue = Float(inputTextFieldtext) {
             switch inputTextField.tag {
             case 1: redSlider.value = currentValue
             case 2: greenSlider.value = currentValue
@@ -124,11 +128,6 @@ extension SettingsColorViewController {
         } else {
             showAlert(title: "Неправильный формат 😡",
                       message: "Пожалуйста введите корректное значение") }
-    }
-    
-    func textFieldShouldReturn(_ inputTextField: UITextField) -> Bool {
-        inputTextField.resignFirstResponder()
-        return true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
