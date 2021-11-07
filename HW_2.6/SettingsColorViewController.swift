@@ -29,8 +29,7 @@ class SettingsColorViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        previewColor.layer.cornerRadius = 10
-        previewColor.backgroundColor = mainVievBackgroudColor
+        previewColorStyle()
         
         setValueForSliders()
         setValueForLabels()
@@ -54,6 +53,13 @@ class SettingsColorViewController: UIViewController, UITextFieldDelegate {
         setColorForPreview()
         setValueForLabels()
         setValueForInputTexts()
+    }
+    
+    private func previewColorStyle(){
+        previewColor.layer.cornerRadius = 10
+        previewColor.backgroundColor = mainVievBackgroudColor
+        previewColor.layer.borderWidth = 1
+        previewColor.layer.borderColor = UIColor(red:222/255, green:225/255, blue:227/255, alpha: 1).cgColor
     }
     
     private func setColorForPreview() {
@@ -98,6 +104,7 @@ extension SettingsColorViewController {
     }
 }
 
+// MARK: - textFieldDidEndEditing
 extension SettingsColorViewController {
     
     func textFieldDidEndEditing(_ inputTextField: UITextField) {
@@ -118,31 +125,6 @@ extension SettingsColorViewController {
             showAlert(title: "Неправильный формат 😡",
                       message: "Пожалуйста введите корректное значение") }
     }
-}
-
-extension SettingsColorViewController {
-    
-    private func addDoneButton(for inputTextField: UITextField) {
-        
-        let toolbarWithDoneButton = UIToolbar()
-        inputTextField.inputAccessoryView = toolbarWithDoneButton
-        toolbarWithDoneButton.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(title:"Done",
-                                         style: .done,
-                                         target: self,
-                                         action: #selector(didTapDone))
-        
-        let flexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
-                                            target: nil,
-                                            action: nil)
-        
-        toolbarWithDoneButton.items = [flexBarButton, doneButton]
-    }
-    
-    @objc private func didTapDone() {
-        view.endEditing(true)
-    }
     
     func textFieldShouldReturn(_ inputTextField: UITextField) -> Bool {
         inputTextField.resignFirstResponder()
@@ -153,8 +135,31 @@ extension SettingsColorViewController {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
     }
+}
+
+// MARK: - addDoneButton
+extension SettingsColorViewController {
+    private func addDoneButton(for inputTextField: UITextField) {
+        
+        let toolbarWithDoneButton = UIToolbar()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                            target: nil,
+                                            action: nil)
+        
+        let doneButton = UIBarButtonItem(title:"Done",
+                                         style: .done,
+                                         target: self,
+                                         action: #selector(doneButtonPressedOnToolBar))
+
+        toolbarWithDoneButton.items = [flexSpace, doneButton]
+        toolbarWithDoneButton.sizeToFit()
+        inputTextField.inputAccessoryView = toolbarWithDoneButton
+        
+    }
     
-    
+    @objc private func doneButtonPressedOnToolBar() {
+        view.endEditing(true)
+    }
 }
 
 
