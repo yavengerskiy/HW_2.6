@@ -7,13 +7,13 @@
 
 import UIKit
 
-class SettingsColorViewController: UIViewController {
+class SettingsColorViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var previewColor: UIView!
     
     @IBOutlet weak var redSlider: UISlider!
-    @IBOutlet weak var blueSlider: UISlider!
     @IBOutlet weak var greenSlider: UISlider!
+    @IBOutlet weak var blueSlider: UISlider!
     
     @IBOutlet weak var redLabel: UILabel!
     @IBOutlet weak var blueLabel: UILabel!
@@ -31,44 +31,32 @@ class SettingsColorViewController: UIViewController {
         
         previewColor.layer.cornerRadius = 10
         previewColor.backgroundColor = mainVievBackgroudColor
-    
-//        redInputText.delegate = self
-//        greenInputText.delegate = self
-//        blueInputText.delegate = self
         
         setValueForSliders()
         setValueForLabels()
         setValueForInputTexts()
         
+        addDoneButton(for: redInputText)
+        addDoneButton(for: greenInputText)
+        addDoneButton(for: blueInputText)
+        
+        redInputText.delegate = self
+        greenInputText.delegate = self
+        blueInputText.delegate = self
     }
     
-    @IBAction func doneButtonPressedN() {
+    @IBAction func doneButtonPressed() {
         delegate.setColor(previewColor.backgroundColor!)
         dismiss(animated: true)
     }
     
-    
     @IBAction func changeSliderValue(_ sender: UISlider) {
-        setColor()
-        let formattedSliderValue = formattedString(from: sender.value)
-        
-        switch sender.tag {
-        case 1:
-            redLabel.text = formattedSliderValue
-            redInputText.text = formattedSliderValue
-        case 2:
-            greenLabel.text = formattedSliderValue
-            greenInputText.text = formattedSliderValue
-        case 3:
-            blueLabel.text = formattedSliderValue
-            blueInputText.text = formattedSliderValue
-        default:
-            break
-        }
-
+        setColorForPreview()
+        setValueForLabels()
+        setValueForInputTexts()
     }
     
-    func setColor() {
+    private func setColorForPreview() {
         let selectedColor = UIColor(red: CGFloat(redSlider.value),
                                     green: CGFloat(greenSlider.value),
                                     blue: CGFloat(blueSlider.value),
@@ -78,14 +66,14 @@ class SettingsColorViewController: UIViewController {
     
     private func setValueForLabels(){
         redLabel.text = formattedString(from: redSlider.value)
-        greenLabel.text = formattedString(from: redSlider.value)
-        blueLabel.text = formattedString(from: redSlider.value)
+        greenLabel.text = formattedString(from: greenSlider.value)
+        blueLabel.text = formattedString(from: blueSlider.value)
     }
     
     private func setValueForInputTexts(){
         redInputText.text = formattedString(from: redSlider.value)
-        greenInputText.text = formattedString(from: redSlider.value)
-        blueInputText.text = formattedString(from: redSlider.value)
+        greenInputText.text = formattedString(from: greenSlider.value)
+        blueInputText.text = formattedString(from: blueSlider.value)
     }
     
     private func formattedString(from sliderValue: Float) -> String {
@@ -97,8 +85,76 @@ class SettingsColorViewController: UIViewController {
         greenSlider.value = Float(CIColor(color: mainVievBackgroudColor).green)
         blueSlider.value = Float(CIColor(color: mainVievBackgroudColor).blue)
     }
-    
-    
-
-
 }
+
+// MARK: - showAlert
+extension SettingsColorViewController {
+    private func showAlert (title: String, message:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        present (alert , animated: true )
+        
+    }
+}
+
+extension SettingsColorViewController {
+    
+    func textFieldDidEndEditing(_ inputTextField: UITextField) {
+        
+        if let currentValue = Float(inputTextField.text!) {
+            switch inputTextField.tag {
+            case 1: redSlider.value = currentValue
+            case 2: greenSlider.value = currentValue
+            case 3: blueSlider.value = currentValue
+            default: break
+            }
+            
+            setColorForPreview()
+            setValueForLabels()
+            setValueForInputTexts()
+            
+        } else {
+            showAlert(title: "Неправильный формат 😡",
+                      message: "Пожалуйста введите корректное значение") }
+    }
+}
+
+extension SettingsColorViewController {
+    
+    private func addDoneButton(for inputTextField: UITextField) {
+        
+        let toolbarWithDoneButton = UIToolbar()
+        inputTextField.inputAccessoryView = toolbarWithDoneButton
+        toolbarWithDoneButton.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title:"Done",
+                                         style: .done,
+                                         target: self,
+                                         action: #selector(didTapDone))
+        
+        let flexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                            target: nil,
+                                            action: nil)
+        
+        toolbarWithDoneButton.items = [flexBarButton, doneButton]
+    }
+    
+    @objc private func didTapDone() {
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ inputTextField: UITextField) -> Bool {
+        inputTextField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
+    
+}
+
+
