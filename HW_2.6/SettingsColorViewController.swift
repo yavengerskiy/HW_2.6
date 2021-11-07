@@ -31,6 +31,10 @@ class SettingsColorViewController: UIViewController {
         
         previewColor.layer.cornerRadius = 10
         previewColor.backgroundColor = mainVievBackgroudColor
+    
+        setValueForSliders()
+        setValueForLabels()
+        setValueForInputTexts()
         
     }
     
@@ -40,10 +44,9 @@ class SettingsColorViewController: UIViewController {
     
     @IBAction func changeSliderValue(_ sender: UISlider) {
         setColor()
-        
-        
+        setValueForLabels()
+        setValueForInputTexts()
     }
-    
     
     func setColor() {
         let selectedColor = UIColor(red: CGFloat(redSlider.value),
@@ -55,16 +58,28 @@ class SettingsColorViewController: UIViewController {
     }
     
     private func setValueForLabels(){
-        redLabel.text = String(redSlider.value)
-        greenLabel.text = String(redSlider.value)
-        blueLabel.text = String(redSlider.value)
+        redLabel.text = formattedString(from: redSlider.value)
+        greenLabel.text = formattedString(from: redSlider.value)
+        blueLabel.text = formattedString(from: redSlider.value)
     }
     
-    private func setValueForInputText(){
-        redInputText.text = String(redSlider.value)
-        greenInputText.text = String(redSlider.value)
-        blueInputText.text = String(redSlider.value)
+    private func setValueForInputTexts(){
+        redInputText.text = formattedString(from: redSlider.value)
+        greenInputText.text = formattedString(from: redSlider.value)
+        blueInputText.text = formattedString(from: redSlider.value)
     }
+    
+    private func formattedString(from sliderValue: Float) -> String {
+        String(format: "%.2f", sliderValue)
+    }
+    
+    private func setValueForSliders() {
+        redSlider.value = Float(CIColor(color: mainVievBackgroudColor).red)
+        greenSlider.value = Float(CIColor(color: mainVievBackgroudColor).green)
+        blueSlider.value = Float(CIColor(color: mainVievBackgroudColor).blue)
+    }
+    
+    
 
 
 }
